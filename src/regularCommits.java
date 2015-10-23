@@ -10,14 +10,35 @@
  > 10
  1 2 5 10
  > quit
-
  */
+
 import java.util.*;
 
 public class regularCommits {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
-        int input = console.nextInt();
 
+        while (true){
+            String input = console.next();
+            int numberInput;
+
+            if (input.equalsIgnoreCase("quit")) {
+                return;
+            } else {
+                numberInput = Integer.parseInt(input);
+            }
+
+            if(numberInput > 100 || numberInput < 1){
+                System.out.println("Only integer values between 1 and 100 are allowed");
+                return;
+            }
+
+            for (int i = 1; i <= numberInput; i++) {
+                if (numberInput % i == 0) {
+                    System.out.print(i + " ");
+                }
+            }
+            System.out.println();
+        }
     }
 }
