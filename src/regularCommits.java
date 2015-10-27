@@ -33,12 +33,12 @@ public class regularCommits {
             }
 
             if(input1.contains(" ")) {
-                numberInput1 = Integer.parseInt(input1.substring(0,2));
-                numberInput2 = Integer.parseInt(input1.substring(3,5));
-
+                numberInput1 = Integer.parseInt(input1.substring(0,2)); // its this that it doesn't like
+                numberInput2 = Integer.parseInt(input1.substring(3,5)); // why don't you like it?
+                                                                        // fix this.
                 if (numberInput1 > numberInput2){
-                    greaterNumber = numberInput1;
-                } else {
+                    greaterNumber = numberInput1; // You don't want greater number because you're trying to
+                } else {                          // find the largest one that fits both (must fit small)
                     greaterNumber = numberInput2;
                 }
 
