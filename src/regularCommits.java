@@ -14,7 +14,6 @@
 
  > 10
  1 2 5 10
-
  */
 
 import java.util.*;
@@ -24,33 +23,33 @@ public class regularCommits {
         Scanner console = new Scanner(System.in);
 
         while (true){
-            String input1 = console.next();
-            String input2 = console.next();
+            String input1 = console.nextLine();
             int numberInput1;
             int numberInput2;
             int greaterNumber;
 
             if (input1.equalsIgnoreCase("quit")) {
                 return;
-            } else {
-                numberInput1 = Integer.parseInt(input1);
-                numberInput2 = Integer.parseInt(input2);
             }
 
-            if(numberInput2 != 0) {
+            if(input1.contains(" ")) {
+                numberInput1 = Integer.parseInt(input1.substring(0,2));
+                numberInput2 = Integer.parseInt(input1.substring(3,5));
+
                 if (numberInput1 > numberInput2){
                     greaterNumber = numberInput1;
                 } else {
                     greaterNumber = numberInput2;
                 }
 
-                for (int i = 1; i <= greaterNumber; i++) {
+                for (int i = greaterNumber; i <= 1; i--) {
                     if (numberInput1 % i == 0 && numberInput1 % i == numberInput2 % i) {
-                        System.out.print(i + " ");
+                        System.out.println(i + " ");
                     }
                 }
 
             } else {
+                numberInput1 = Integer.parseInt(input1);
                 if (numberInput1 > 100 || numberInput1 < 1) {
                     System.out.println("Only integer values between 1 and 100 are allowed");
                     return;
