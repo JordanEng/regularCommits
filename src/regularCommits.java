@@ -23,33 +23,22 @@ public class regularCommits {
         Scanner console = new Scanner(System.in);
 
         while (true){
-            String input1 = console.nextLine();
-            int numberInput1;
-            int numberInput2;
-            int greaterNumber;
+            int numberInput1 = 0;
+            int numberInput2 = 0;
+            String quit;
+            int smallerNumber;
 
-            if (input1.equalsIgnoreCase("quit")) {
-                return;
+            try {
+                numberInput1 = console.nextInt();
+                numberInput2 = console.nextInt();
+            } catch (InputMismatchException problem) {
+                quit = console.nextLine();
+                if(quit.equalsIgnoreCase("quit")) {
+                    return;
+                }
             }
 
-            if(input1.contains(" ")) {
-                numberInput1 = Integer.parseInt(input1.substring(0,2)); // its this that it doesn't like
-                numberInput2 = Integer.parseInt(input1.substring(3,5)); // why don't you like it?
-                                                                        // fix this.
-                if (numberInput1 > numberInput2){
-                    greaterNumber = numberInput1; // You don't want greater number because you're trying to
-                } else {                          // find the largest one that fits both (must fit small)
-                    greaterNumber = numberInput2;
-                }
-
-                for (int i = greaterNumber; i <= 1; i--) {
-                    if (numberInput1 % i == 0 && numberInput1 % i == numberInput2 % i) {
-                        System.out.println(i + " ");
-                    }
-                }
-
-            } else {
-                numberInput1 = Integer.parseInt(input1);
+            if (numberInput2 == 0){
                 if (numberInput1 > 100 || numberInput1 < 1) {
                     System.out.println("Only integer values between 1 and 100 are allowed");
                     return;
@@ -61,6 +50,20 @@ public class regularCommits {
                     }
                 }
                 System.out.println();
+
+            } else {
+                if (numberInput1 > numberInput2) {
+                    smallerNumber = numberInput2;
+                } else {
+                    smallerNumber = numberInput1;
+                }
+
+                for (int i = smallerNumber; i >= 1; i--) {
+                    if (numberInput1 % i == 0 && numberInput2 % i == 0) {
+                        System.out.println(i + " ");
+                        break;
+                    }
+                }
             }
         }
     }
