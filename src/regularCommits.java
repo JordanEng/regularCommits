@@ -36,29 +36,34 @@ public class regularCommits {
             }
 
             if (numberInput2 == 0){
-               oneNumber(numberInput1);
+               String factors = oneNumber(numberInput1);
+                    System.out.println(factors);
             } else {
-                twoNumbers(numberInput1, numberInput2);
+                int gcd = twoNumbers(numberInput1, numberInput2);
+                    System.out.println(gcd);
             }
         }
     }
 
-    public static void oneNumber(int numberInput1){
+    public static String oneNumber(int numberInput1){
+        String factors = "";
+
         if (numberInput1 > 100 || numberInput1 < 1) {
-            System.out.println("Only integer values between 1 and 100 are allowed");
-            return;
+            return "Only integer values between 1 and 100 are allowed";
         }
 
         for (int i = 1; i <= numberInput1; i++) {
             if (numberInput1 % i == 0) {
-                System.out.print(i + " ");
+                factors = factors + i + " ";
             }
         }
-        System.out.println();
+        return factors;
     }
 
-    public static void twoNumbers(int numberInput1, int numberInput2){
+    public static int twoNumbers(int numberInput1, int numberInput2){
         int smallerNumber;
+        int gcd = 1;
+
         if (numberInput1 > numberInput2) {
             smallerNumber = numberInput2;
         } else {
@@ -67,9 +72,10 @@ public class regularCommits {
 
         for (int i = smallerNumber; i >= 1; i--) {
             if (numberInput1 % i == 0 && numberInput2 % i == 0) {
-                System.out.println(i + " ");
+                gcd = i;
                 break;
             }
         }
+        return gcd;
     }
 }
