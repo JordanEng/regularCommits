@@ -21,49 +21,54 @@ import java.util.*;
 public class regularCommits {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
+        int numberInput1 = 0;
+        int numberInput2 = 0;
 
         while (true){
-            int numberInput1 = 0;
-            int numberInput2 = 0;
-            String quit;
-            int smallerNumber;
-
             try {
                 numberInput1 = console.nextInt();
                 numberInput2 = console.nextInt();
             } catch (InputMismatchException problem) {
-                quit = console.nextLine();
+                String quit = console.nextLine();
                 if(quit.equalsIgnoreCase("quit")) {
                     return;
                 }
             }
 
             if (numberInput2 == 0){
-                if (numberInput1 > 100 || numberInput1 < 1) {
-                    System.out.println("Only integer values between 1 and 100 are allowed");
-                    return;
-                }
-
-                for (int i = 1; i <= numberInput1; i++) {
-                    if (numberInput1 % i == 0) {
-                        System.out.print(i + " ");
-                    }
-                }
-                System.out.println();
-
+               oneNumber(numberInput1);
             } else {
-                if (numberInput1 > numberInput2) {
-                    smallerNumber = numberInput2;
-                } else {
-                    smallerNumber = numberInput1;
-                }
+                twoNumbers(numberInput1, numberInput2);
+            }
+        }
+    }
 
-                for (int i = smallerNumber; i >= 1; i--) {
-                    if (numberInput1 % i == 0 && numberInput2 % i == 0) {
-                        System.out.println(i + " ");
-                        break;
-                    }
-                }
+    public static void oneNumber(int numberInput1){
+        if (numberInput1 > 100 || numberInput1 < 1) {
+            System.out.println("Only integer values between 1 and 100 are allowed");
+            return;
+        }
+
+        for (int i = 1; i <= numberInput1; i++) {
+            if (numberInput1 % i == 0) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void twoNumbers(int numberInput1, int numberInput2){
+        int smallerNumber;
+        if (numberInput1 > numberInput2) {
+            smallerNumber = numberInput2;
+        } else {
+            smallerNumber = numberInput1;
+        }
+
+        for (int i = smallerNumber; i >= 1; i--) {
+            if (numberInput1 % i == 0 && numberInput2 % i == 0) {
+                System.out.println(i + " ");
+                break;
             }
         }
     }
