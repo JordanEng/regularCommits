@@ -21,26 +21,30 @@ import java.util.*;
 public class regularCommits {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
+        String lineInput = "";
         int numberInput1 = 0;
         int numberInput2 = 0;
 
         while (true){
             try {
-                numberInput1 = console.nextInt();
-                numberInput2 = console.nextInt();
+                lineInput = console.nextLine();
             } catch (InputMismatchException problem) {
-                String quit = console.nextLine();
-                if(quit.equalsIgnoreCase("quit")) {
+                if(lineInput.equalsIgnoreCase("quit")) {
                     return;
                 }
             }
 
-            if (numberInput2 == 0){
-               String factors = oneNumber(numberInput1);
-                    System.out.println(factors);
-            } else {
+            if (lineInput.contains(" ")){
+                int space = lineInput.indexOf(" ");
+                numberInput1 = Integer.parseInt(lineInput.substring(0, space));
+                numberInput2 = Integer.parseInt(lineInput.substring(space + 1, lineInput.length()));
+
                 int gcd = twoNumbers(numberInput1, numberInput2);
-                    System.out.println(gcd);
+                System.out.println(gcd);
+            } else {
+                numberInput1 = Integer.parseInt(lineInput);
+                String factors = oneNumber(numberInput1);
+                System.out.println(factors);
             }
         }
     }
