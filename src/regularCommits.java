@@ -14,7 +14,6 @@
 
  > 10
  1 2 5 10
-
  */
 
 import java.util.*;
@@ -22,47 +21,65 @@ import java.util.*;
 public class regularCommits {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
+        String lineInput = "";
+        int numberInput1 = 0;
+        int numberInput2 = 0;
 
         while (true){
-            String input1 = console.next();
-            String input2 = console.next();
-            int numberInput1;
-            int numberInput2;
-            int greaterNumber;
-
-            if (input1.equalsIgnoreCase("quit")) {
-                return;
-            } else {
-                numberInput1 = Integer.parseInt(input1);
-                numberInput2 = Integer.parseInt(input2);
-            }
-
-            if(numberInput2 != 0) {
-                if (numberInput1 > numberInput2){
-                    greaterNumber = numberInput1;
-                } else {
-                    greaterNumber = numberInput2;
-                }
-
-                for (int i = 1; i <= greaterNumber; i++) {
-                    if (numberInput1 % i == 0 && numberInput1 % i == numberInput2 % i) {
-                        System.out.print(i + " ");
-                    }
-                }
-
-            } else {
-                if (numberInput1 > 100 || numberInput1 < 1) {
-                    System.out.println("Only integer values between 1 and 100 are allowed");
+            try {
+                lineInput = console.nextLine();
+            } catch (InputMismatchException problem) {
+                if(lineInput.equalsIgnoreCase("quit")) {
                     return;
                 }
+            }
 
-                for (int i = 1; i <= numberInput1; i++) {
-                    if (numberInput1 % i == 0) {
-                        System.out.print(i + " ");
-                    }
-                }
-                System.out.println();
+            if (lineInput.contains(" ")){
+                int space = lineInput.indexOf(" ");
+                numberInput1 = Integer.parseInt(lineInput.substring(0, space));
+                numberInput2 = Integer.parseInt(lineInput.substring(space + 1, lineInput.length()));
+
+                int gcd = twoNumbers(numberInput1, numberInput2);
+                System.out.println(gcd);
+            } else {
+                numberInput1 = Integer.parseInt(lineInput);
+                String factors = oneNumber(numberInput1);
+                System.out.println(factors);
             }
         }
+    }
+
+    public static String oneNumber(int numberInput1){
+        String factors = "";
+
+        if (numberInput1 > 100 || numberInput1 < 1) {
+            return "Only integer values between 1 and 100 are allowed";
+        }
+
+        for (int i = 1; i <= numberInput1; i++) {
+            if (numberInput1 % i == 0) {
+                factors = factors + i + " ";
+            }
+        }
+        return factors;
+    }
+
+    public static int twoNumbers(int numberInput1, int numberInput2){
+        int smallerNumber;
+        int gcd = 1;
+
+        if (numberInput1 > numberInput2) {
+            smallerNumber = numberInput2;
+        } else {
+            smallerNumber = numberInput1;
+        }
+
+        for (int i = smallerNumber; i >= 1; i--) {
+            if (numberInput1 % i == 0 && numberInput2 % i == 0) {
+                gcd = i;
+                break;
+            }
+        }
+        return gcd;
     }
 }
