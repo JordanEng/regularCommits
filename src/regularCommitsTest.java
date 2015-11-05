@@ -1,5 +1,4 @@
 import org.junit.Assert;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +16,7 @@ public class regularCommitsTest {
         Assert.assertEquals("10", "1 2 5 10", a.oneNumber(10));
     }
 
+    @Test
     public void testTwo(){
         Assert.assertEquals("10, 15", 5, a.twoNumbers(10,15));
     }
