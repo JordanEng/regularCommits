@@ -21,50 +21,52 @@ import java.util.*;
 public class regularCommits {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
-        String lineInput = "";
-        int numberInput1 = 0;
-        int numberInput2 = 0;
+        String lineInput;
+        int numberInput1;
+        int numberInput2;
+
+        regularCommits run = new regularCommits();
 
         while (true){
-            try {
-                lineInput = console.nextLine();
-            } catch (InputMismatchException problem) {
-                if(lineInput.equalsIgnoreCase("quit")) {
-                    return;
-                }
-            }
+            lineInput = console.nextLine();
 
-            if (lineInput.contains(" ")){
+            if(lineInput.equalsIgnoreCase("quit")) {
+                    return;
+            }
+            else if (lineInput.contains(" ")){
                 int space = lineInput.indexOf(" ");
                 numberInput1 = Integer.parseInt(lineInput.substring(0, space));
                 numberInput2 = Integer.parseInt(lineInput.substring(space + 1, lineInput.length()));
 
-                int gcd = twoNumbers(numberInput1, numberInput2);
+                int gcd = run.twoNumbers(numberInput1, numberInput2);
                 System.out.println(gcd);
             } else {
                 numberInput1 = Integer.parseInt(lineInput);
-                String factors = oneNumber(numberInput1);
+                String factors = run.oneNumber(numberInput1);
                 System.out.println(factors);
             }
         }
     }
 
-    public static String oneNumber(int numberInput1){
+    public String oneNumber(int numberInput1){
         String factors = "";
 
         if (numberInput1 > 100 || numberInput1 < 1) {
             return "Only integer values between 1 and 100 are allowed";
         }
 
-        for (int i = 1; i <= numberInput1; i++) {
+        for (int i = 1; i < numberInput1; i++) {
             if (numberInput1 % i == 0) {
                 factors = factors + i + " ";
             }
         }
+
+        factors = factors + numberInput1;
+
         return factors;
     }
 
-    public static int twoNumbers(int numberInput1, int numberInput2){
+    public int twoNumbers(int numberInput1, int numberInput2){
         int smallerNumber;
         int gcd = 1;
 
